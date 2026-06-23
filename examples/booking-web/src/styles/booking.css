@@ -1,0 +1,735 @@
+/* ============================================================
+   booking-web — 森林旅宿示範站專屬樣式
+   基底（reset、.btn、.ph、.container、.sec-head、.grid、.chip、.page-head…）
+   來自 @verdant/ui/styles/primitives.css
+   ============================================================ */
+
+/* ============ Navbar ============ */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  transition: padding 0.4s var(--ease-soft), background 0.4s var(--ease-soft),
+    box-shadow 0.4s var(--ease-soft);
+  padding-block: 1.5rem;
+}
+.nav--scrolled {
+  padding-block: 0.75rem;
+  background: rgba(244, 241, 233, 0.82);
+  backdrop-filter: blur(14px) saturate(140%);
+  box-shadow: 0 1px 0 rgba(43, 54, 46, 0.08);
+}
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.nav__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+.nav__brand svg {
+  width: 26px;
+  height: 26px;
+}
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.nav__link {
+  position: relative;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding-block: 0.3rem;
+}
+.nav__link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1.5px;
+  width: 0;
+  background: var(--forest-700);
+  transition: width 0.35s var(--ease-soft);
+}
+.nav__link:hover::after,
+.nav__link--active::after {
+  width: 100%;
+}
+.nav__cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.55rem 1.3rem;
+  border-radius: 999px;
+  background: var(--forest-700);
+  color: var(--cream-50);
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: background 0.35s var(--ease-soft);
+}
+.nav__cta:hover {
+  background: var(--forest-900);
+}
+
+/* ============ Hero ============ */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding-top: 6rem;
+}
+.hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero__media .ph {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  border: none;
+}
+.hero__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    105deg,
+    rgba(43, 54, 46, 0.82) 0%,
+    rgba(43, 54, 46, 0.55) 45%,
+    rgba(43, 54, 46, 0.2) 100%
+  );
+}
+.hero__content {
+  position: relative;
+  z-index: 2;
+  color: var(--cream-50);
+  max-width: 760px;
+}
+.hero__title {
+  color: var(--cream-50);
+  font-size: clamp(2.8rem, 8vw, 6rem);
+  font-weight: 600;
+  line-height: 0.98;
+}
+.hero__title .word {
+  display: inline-block;
+}
+.hero__lede {
+  margin-top: 1.6rem;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  max-width: 38ch;
+  color: rgba(244, 241, 233, 0.88);
+}
+.hero__actions {
+  margin-top: 2.4rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.hero__scroll {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  bottom: 2rem;
+  transform: translateX(-50%);
+  color: rgba(244, 241, 233, 0.7);
+  font-size: 0.72rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+.hero__scroll span {
+  width: 1px;
+  height: 46px;
+  background: linear-gradient(rgba(244, 241, 233, 0.7), transparent);
+}
+
+/* ============ Room cards ============ */
+.card {
+  position: relative;
+  background: var(--paper);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transform-style: preserve-3d;
+  transition: box-shadow 0.5s var(--ease-soft);
+}
+.card:hover {
+  box-shadow: var(--shadow);
+}
+.card__media {
+  position: relative;
+  overflow: hidden;
+}
+.card__media .ph {
+  border-radius: 0;
+  border: none;
+  transition: transform 0.7s var(--ease-soft);
+}
+.card:hover .card__media .ph {
+  transform: scale(1.06);
+}
+.card__sheen {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  background: linear-gradient(
+    115deg,
+    transparent 40%,
+    rgba(244, 241, 233, 0.28) 50%,
+    transparent 60%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.8s var(--ease-soft);
+  pointer-events: none;
+}
+.card:hover .card__sheen {
+  transform: translateX(120%);
+}
+.card__tag {
+  position: absolute;
+  z-index: 5;
+  top: 0.9rem;
+  left: 0.9rem;
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.32em 0.8em;
+  border-radius: 999px;
+  background: var(--cream-50);
+  color: var(--forest-700);
+  font-weight: 600;
+}
+.card__body {
+  padding: 1.3rem 1.4rem 1.5rem;
+}
+.card__cat {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--moss-600);
+}
+.card__name {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-top: 0.3rem;
+}
+.card__blurb {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+.card__foot {
+  margin-top: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.price {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+.price small {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+  font-weight: 400;
+}
+
+/* ============ Story / parallax ============ */
+.story {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+}
+.story__media {
+  position: relative;
+}
+.story__media .floaty {
+  position: absolute;
+  z-index: 3;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  width: 46%;
+  right: -8%;
+  bottom: -10%;
+}
+.story__text h2 {
+  font-size: clamp(2rem, 4.5vw, 3.4rem);
+}
+.story__text p {
+  margin-top: 1.2rem;
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+}
+.story__stats {
+  margin-top: 2.4rem;
+  display: flex;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+.stat__num {
+  font-family: var(--font-serif);
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: var(--forest-700);
+}
+.stat__label {
+  font-size: 0.82rem;
+  color: var(--ink-faint);
+  letter-spacing: 0.04em;
+}
+
+/* ============ Facility tiles ============ */
+.cats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2rem;
+}
+.cat {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  display: flex;
+  align-items: flex-end;
+  isolation: isolate;
+}
+.cat .ph {
+  position: absolute;
+  inset: 0;
+  border-radius: 0;
+  border: none;
+  z-index: 0;
+  transition: transform 0.8s var(--ease-soft);
+}
+.cat:hover .ph {
+  transform: scale(1.08);
+}
+.cat__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(to top, rgba(43, 54, 46, 0.7), transparent 60%);
+}
+.cat__label {
+  position: relative;
+  z-index: 2;
+  color: var(--cream-50);
+  padding: 1.4rem;
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  font-weight: 600;
+}
+
+/* ============ CTA banner ============ */
+.news {
+  background: var(--forest-900);
+  color: var(--cream-50);
+  border-radius: var(--radius-lg);
+  padding: clamp(2.5rem, 6vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+.news h2 {
+  color: var(--cream-50);
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  max-width: 18ch;
+}
+.news__leaf {
+  position: absolute;
+  font-size: 14rem;
+  right: -2rem;
+  bottom: -4rem;
+  opacity: 0.07;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ============ Footer ============ */
+.footer {
+  background: var(--forest-900);
+  color: rgba(244, 241, 233, 0.78);
+  padding-block: clamp(3rem, 6vw, 5rem) 2rem;
+  margin-top: 4rem;
+}
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1.6fr repeat(3, 1fr);
+  gap: 2.5rem;
+}
+.footer__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--cream-50);
+}
+.footer__brand svg {
+  width: 28px;
+  height: 28px;
+}
+.footer p {
+  margin-top: 1rem;
+  max-width: 32ch;
+  font-size: 0.92rem;
+}
+.footer h4 {
+  color: var(--cream-50);
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.footer li {
+  margin-bottom: 0.6rem;
+  font-size: 0.92rem;
+}
+.footer li a:hover {
+  color: var(--cream-50);
+}
+.footer__divider {
+  height: 1px;
+  background: rgba(244, 241, 233, 0.12);
+  margin-block: 2.5rem 1.5rem;
+}
+.footer__base {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.82rem;
+  color: rgba(244, 241, 233, 0.5);
+}
+
+/* ============ Room detail（沿用 .pd 版位） ============ */
+.pd {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: start;
+}
+.pd__gallery {
+  position: sticky;
+  top: 6rem;
+}
+.pd__thumbs {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.8rem;
+}
+.pd__thumb {
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 2px solid transparent;
+  transition: border-color 0.3s var(--ease-soft);
+  cursor: pointer;
+}
+.pd__thumb--active {
+  border-color: var(--forest-700);
+}
+.pd__cat {
+  color: var(--moss-600);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+}
+.pd__title {
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  margin-top: 0.5rem;
+}
+.pd__desc {
+  margin-top: 1.4rem;
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+}
+.pd__specs {
+  margin-top: 1.8rem;
+  border-top: 1px solid rgba(43, 54, 46, 0.12);
+}
+.pd__spec {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid rgba(43, 54, 46, 0.12);
+  font-size: 0.95rem;
+}
+.pd__spec span:first-child {
+  color: var(--ink-faint);
+}
+
+/* ============ Amenities ============ */
+.amenities {
+  margin-top: 1.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.amenities__item {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  padding: 0.4em 0.95em;
+  border-radius: 999px;
+  background: rgba(107, 122, 90, 0.12);
+  border: 1px solid rgba(107, 122, 90, 0.22);
+}
+
+/* ============ Date picker ============ */
+.datepick {
+  background: var(--paper);
+  border-radius: var(--radius);
+  padding: 1.3rem;
+  box-shadow: var(--shadow-sm);
+}
+.datepick__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.9fr;
+  gap: 0.8rem;
+}
+.datepick__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.datepick__field span {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+}
+.datepick__field input,
+.datepick__field select {
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--ink);
+  padding: 0.7em 0.8em;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(43, 54, 46, 0.2);
+  background: var(--cream-50);
+}
+.datepick__nights {
+  margin-top: 0.9rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--moss-600);
+}
+
+/* ============ Room detail booking block ============ */
+.roomd__book {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ============ Booking page ============ */
+.booking__block {
+  margin-bottom: 2.5rem;
+}
+.booking__blocktitle {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+.formgrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.formfield {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.formfield--full {
+  grid-column: 1 / -1;
+}
+.formfield span {
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-faint);
+}
+.formfield input,
+.formfield textarea {
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--ink);
+  padding: 0.8em 0.9em;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(43, 54, 46, 0.2);
+  background: var(--cream-50);
+  resize: vertical;
+}
+
+/* ============ Booking summary aside（沿用 .cart 版位） ============ */
+.cart {
+  display: grid;
+  grid-template-columns: 1.5fr 0.9fr;
+  gap: clamp(2rem, 4vw, 3.5rem);
+  align-items: start;
+}
+.cart__summary {
+  position: sticky;
+  top: 6rem;
+  background: var(--paper);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+.cart__empty {
+  text-align: center;
+  padding: 5rem 1rem;
+}
+.cart__empty h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.bsum__title {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+.bsum__room {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding-bottom: 1rem;
+  margin-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(43, 54, 46, 0.12);
+}
+.bsum__roomname {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+.bsum__roomtype {
+  font-size: 0.82rem;
+  color: var(--ink-faint);
+}
+.bsum__row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+.bsum__divider {
+  height: 1px;
+  background: rgba(43, 54, 46, 0.12);
+  margin-block: 0.8rem;
+}
+.bsum__total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-top: 1rem;
+  margin-top: 0.4rem;
+  border-top: 1px solid rgba(43, 54, 46, 0.14);
+}
+.bsum__total b {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+}
+.bsum__hint {
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+}
+
+/* ============ Confirmation ============ */
+.confirm {
+  text-align: center;
+  max-width: 540px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+.confirm__badge {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1.5rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--moss-500);
+  color: var(--cream-50);
+  font-size: 1.8rem;
+}
+.confirm__title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-top: 0.5rem;
+}
+.confirm__code {
+  margin-top: 1rem;
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--forest-700);
+  letter-spacing: 0.06em;
+}
+
+/* ============ Toast ============ */
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  z-index: 9000;
+  transform: translateX(-50%);
+  background: var(--forest-900);
+  color: var(--cream-50);
+  padding: 0.9rem 1.6rem;
+  border-radius: 999px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* ============ Responsive ============ */
+@media (max-width: 900px) {
+  .story,
+  .pd,
+  .cart {
+    grid-template-columns: 1fr;
+  }
+  .pd__gallery,
+  .cart__summary {
+    position: static;
+  }
+  .footer__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 640px) {
+  .nav__links {
+    display: none;
+  }
+  .datepick__row,
+  .formgrid {
+    grid-template-columns: 1fr;
+  }
+  .footer__grid {
+    grid-template-columns: 1fr;
+  }
+}
