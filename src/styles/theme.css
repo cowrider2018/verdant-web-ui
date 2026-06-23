@@ -1,0 +1,43 @@
+:root {
+  /* ===== 森林色票（中低飽和綠 / 棕） ===== */
+  --forest-900: #2b362e; /* 最深森林綠 — footer / 暗區背景 */
+  --forest-800: #334036;
+  --forest-700: #3c4a3e; /* 深綠 */
+  --moss-600:   #586848;
+  --moss-500:   #6b7a5a; /* 苔綠主色 */
+  --sage-400:   #87977b;
+  --sage-300:   #9ca891; /* 霧化淺綠 */
+  --sage-200:   #c2c9b6;
+
+  --bark-700:   #4a3c30; /* 樹皮棕 */
+  --bark-500:   #6e5a47;
+  --tan-300:    #a8927a; /* 麻色 / 淺棕 */
+  --tan-200:    #c8b6a0;
+
+  --cream-100:  #ede8dd; /* 主背景米白 */
+  --cream-50:   #f4f1e9;
+  --paper:      #f8f6f0;
+
+  --gold-400:   #b89b6e; /* 低調點綴金 */
+  --gold-300:   #cdb487;
+
+  --ink:        #23291f; /* 主文字 */
+  --ink-soft:   #4c5347;
+  --ink-faint:  #7c8174;
+
+  /* ===== 排版 ===== */
+  --font-serif: 'Fraunces', 'Noto Sans TC', serif;
+  --font-sans:  'Noto Sans TC', system-ui, -apple-system, sans-serif;
+
+  /* ===== 形狀 / 陰影 ===== */
+  --radius-sm: 8px;
+  --radius:    16px;
+  --radius-lg: 28px;
+  --shadow-sm: 0 2px 10px rgba(43, 54, 46, 0.06);
+  --shadow:    0 12px 40px rgba(43, 54, 46, 0.12);
+  --shadow-lg: 0 30px 80px rgba(43, 54, 46, 0.20);
+
+  /* ===== 動態 ===== */
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --maxw: 1240px;
+}
