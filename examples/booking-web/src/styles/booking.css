@@ -509,27 +509,6 @@
   grid-template-columns: 1fr 1fr 0.9fr;
   gap: 0.8rem;
 }
-.datepick__field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-.datepick__field span {
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  color: var(--ink-faint);
-  text-transform: uppercase;
-}
-.datepick__field input,
-.datepick__field select {
-  font-family: inherit;
-  font-size: 0.95rem;
-  color: var(--ink);
-  padding: 0.7em 0.8em;
-  border-radius: var(--radius-sm);
-  border: 1px solid rgba(43, 54, 46, 0.2);
-  background: var(--cream-50);
-}
 .datepick__nights {
   margin-top: 0.9rem;
   font-size: 0.9rem;
@@ -557,30 +536,6 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
-}
-.formfield {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-.formfield--full {
-  grid-column: 1 / -1;
-}
-.formfield span {
-  font-size: 0.78rem;
-  letter-spacing: 0.06em;
-  color: var(--ink-faint);
-}
-.formfield input,
-.formfield textarea {
-  font-family: inherit;
-  font-size: 0.95rem;
-  color: var(--ink);
-  padding: 0.8em 0.9em;
-  border-radius: var(--radius-sm);
-  border: 1px solid rgba(43, 54, 46, 0.2);
-  background: var(--cream-50);
-  resize: vertical;
 }
 
 /* ============ Booking summary aside（沿用 .cart 版位） ============ */

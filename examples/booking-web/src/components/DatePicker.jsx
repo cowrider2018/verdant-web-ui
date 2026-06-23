@@ -1,6 +1,15 @@
+import { Field, DateField, Select } from '@verdant/ui'
 import { diffNights } from '../context/BookingContext.jsx'
 
-const todayStr = () => new Date().toISOString().slice(0, 10)
+const pad = (n) => String(n).padStart(2, '0')
+const fmt = (d) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`
+// 本地時區的「今天」（避免 toISOString 的 UTC 位移造成當月日期被誤判為過去）
+const todayStr = () => fmt(new Date())
+// 'YYYY-MM-DD' 加 n 天（手動解析，避免被當成 UTC）
+const addDays = (str, n) => {
+  const [y, m, d] = str.split('-').map(Number)
+  return fmt(new Date(y, m - 1, d + n))
+}
 
 /**
  * DatePicker — 入住 / 退房日期 + 入住人數選擇，並即時顯示住宿晚數。
@@ -15,40 +24,35 @@ export default function DatePicker({
   className = '',
 }) {
   const nights = diffNights(checkIn, checkOut)
-  const minOut = checkIn || todayStr()
+  // 退房最早為入住的下一天（至少一晚，不可與入住同日或更早）
+  const minOut = checkIn ? addDays(checkIn, 1) : todayStr()
 
   return (
     <div className={`datepick ${className}`}>
       <div className="datepick__row">
-        <label className="datepick__field">
-          <span>入住</span>
-          <input
-            type="date"
+        <Field label="入住">
+          <DateField
             value={checkIn}
             min={todayStr()}
-            onChange={(e) => {
-              const v = e.target.value
-              // 若退房早於新入住日，順手清空退房
+            onChange={(v) => {
+              // 沒有退房日、或退房日不晚於新入住日時，預設補上入住日的下一天
               const patch = { checkIn: v }
-              if (checkOut && diffNights(v, checkOut) <= 0) patch.checkOut = ''
+              if (!checkOut || diffNights(v, checkOut) <= 0) patch.checkOut = addDays(v, 1)
               onChange(patch)
             }}
           />
-        </label>
+        </Field>
 
-        <label className="datepick__field">
-          <span>退房</span>
-          <input
-            type="date"
+        <Field label="退房">
+          <DateField
             value={checkOut}
             min={minOut}
-            onChange={(e) => onChange({ checkOut: e.target.value })}
+            onChange={(v) => onChange({ checkOut: v })}
           />
-        </label>
+        </Field>
 
-        <label className="datepick__field">
-          <span>入住人數</span>
-          <select
+        <Field label="入住人數">
+          <Select
             value={guests}
             onChange={(e) => onChange({ guests: Number(e.target.value) })}
           >
@@ -57,8 +61,8 @@ export default function DatePicker({
                 {n} 人
               </option>
             ))}
-          </select>
-        </label>
+          </Select>
+        </Field>
       </div>
 
       <p className="datepick__nights">

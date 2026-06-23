@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Reveal, MagneticButton, formatPrice } from '@verdant/ui'
+import { Reveal, MagneticButton, formatPrice, Field, TextInput, Textarea } from '@verdant/ui'
 import DatePicker from '../components/DatePicker.jsx'
 import BookingSummary, { calcTotal } from '../components/BookingSummary.jsx'
 import { getRoom } from '../data/rooms.js'
@@ -98,44 +98,40 @@ export default function Booking() {
           <div className="booking__block">
             <h3 className="serif booking__blocktitle">入住人資料</h3>
             <div className="formgrid">
-              <label className="formfield">
-                <span>姓名 *</span>
-                <input
+              <Field label="姓名 *">
+                <TextInput
                   type="text"
                   required
                   value={guest.name}
                   onChange={(e) => setGuest({ ...guest, name: e.target.value })}
                   placeholder="王小森"
                 />
-              </label>
-              <label className="formfield">
-                <span>電子信箱 *</span>
-                <input
+              </Field>
+              <Field label="電子信箱 *">
+                <TextInput
                   type="email"
                   required
                   value={guest.email}
                   onChange={(e) => setGuest({ ...guest, email: e.target.value })}
                   placeholder="you@example.com"
                 />
-              </label>
-              <label className="formfield">
-                <span>聯絡電話</span>
-                <input
+              </Field>
+              <Field label="聯絡電話">
+                <TextInput
                   type="tel"
                   value={guest.phone}
                   onChange={(e) => setGuest({ ...guest, phone: e.target.value })}
                   placeholder="0912-345-678"
                 />
-              </label>
-              <label className="formfield formfield--full">
-                <span>備註（飲食 / 抵達時間等）</span>
-                <textarea
+              </Field>
+              <Field label="備註（飲食 / 抵達時間等）" full>
+                <Textarea
                   rows={3}
                   value={guest.note}
                   onChange={(e) => setGuest({ ...guest, note: e.target.value })}
                   placeholder="預計傍晚抵達，一位素食。"
                 />
-              </label>
+              </Field>
             </div>
           </div>
         </div>

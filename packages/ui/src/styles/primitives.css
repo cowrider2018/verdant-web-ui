@@ -320,6 +320,176 @@ h4 {
   border-color: var(--forest-700);
 }
 
+/* ============ Form fields ============ */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.field--full {
+  grid-column: 1 / -1;
+}
+.field__label {
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+}
+.input,
+.select,
+.textarea {
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--ink);
+  padding: 0.8em 0.9em;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(43, 54, 46, 0.2);
+  background: var(--cream-50);
+  transition: border-color 0.3s var(--ease-soft),
+    box-shadow 0.3s var(--ease-soft);
+  /* 原生 select 下拉清單沿用森林主題：淺色配色 + moss 強調色 */
+  color-scheme: light;
+  accent-color: var(--moss-500);
+}
+.input:hover,
+.select:hover,
+.textarea:hover {
+  border-color: rgba(43, 54, 46, 0.4);
+}
+.input:focus,
+.select:focus,
+.textarea:focus {
+  outline: none;
+  border-color: var(--moss-500);
+  box-shadow: 0 0 0 3px rgba(107, 122, 90, 0.18);
+}
+.input:disabled,
+.select:disabled,
+.textarea:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  background: rgba(43, 54, 46, 0.04);
+}
+.textarea {
+  resize: vertical;
+}
+/* 自訂下拉箭頭（chevron，使用 --ink-soft 色） */
+.select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 2.4em;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%234c5347' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.9em center;
+}
+/* 展開後的選項清單：套用森林米色背景與墨色文字，
+   選中 / hover 的選項以 moss 高亮（瀏覽器支援度因引擎而異）。 */
+.select option {
+  background: var(--paper);
+  color: var(--ink);
+  padding: 0.5em 0.8em;
+}
+.select option:checked {
+  background: var(--moss-500);
+  color: var(--cream-50);
+}
+
+/* ---- DateField：自訂日期選擇器 + 森林主題小日曆 ---- */
+.datefield {
+  position: relative;
+}
+.datefield__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6em;
+  width: 100%;
+  text-align: left;
+}
+.datefield__trigger svg {
+  flex: none;
+  color: var(--ink-soft);
+}
+.datefield__trigger--empty > span {
+  color: var(--ink-faint);
+}
+.datefield__pop {
+  /* 掛在 document.body 上，以 fixed + 內聯 top/left 定位（見 DateField.jsx） */
+  position: fixed;
+  z-index: 1000;
+  width: 17rem;
+  max-width: 84vw;
+  padding: 0.9rem;
+  background: var(--paper);
+  border: 1px solid rgba(43, 54, 46, 0.12);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.datefield__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.7rem;
+}
+.datefield__title {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color: var(--ink);
+}
+.datefield__nav {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  font-size: 1.2rem;
+  line-height: 1;
+  color: var(--ink-soft);
+  transition: background 0.2s var(--ease-soft);
+}
+.datefield__nav:hover {
+  background: rgba(107, 122, 90, 0.14);
+}
+.datefield__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.15rem;
+}
+.datefield__wd {
+  display: grid;
+  place-items: center;
+  height: 1.8rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-faint);
+}
+.datefield__day {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  font-size: 0.85rem;
+  color: var(--ink);
+  transition: background 0.2s var(--ease-soft), color 0.2s var(--ease-soft);
+}
+.datefield__day:hover:not(:disabled) {
+  background: rgba(107, 122, 90, 0.16);
+}
+.datefield__day--today {
+  box-shadow: inset 0 0 0 1px var(--sage-400);
+}
+.datefield__day--sel,
+.datefield__day--sel:hover {
+  background: var(--moss-500);
+  color: var(--cream-50);
+}
+.datefield__day:disabled {
+  color: var(--ink-faint);
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.datefield__day--blank {
+  visibility: hidden;
+}
+
 /* ============ Page header ============ */
 .page-head {
   padding-top: 9rem;
