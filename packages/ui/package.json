@@ -1,0 +1,22 @@
+{
+  "name": "@verdant/ui",
+  "version": "0.1.0",
+  "private": true,
+  "description": "森林風格 React 元件庫 — 動畫、佔位符與設計 tokens",
+  "type": "module",
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./styles/theme.css": "./src/styles/theme.css",
+    "./styles/primitives.css": "./src/styles/primitives.css"
+  },
+  "files": [
+    "src"
+  ],
+  "peerDependencies": {
+    "framer-motion": "^11.3.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  }
+}
