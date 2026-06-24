@@ -8,6 +8,7 @@ import {
   Parallax,
   SunFlare,
   LeafMark,
+  TiltCard,
   Field,
   DateField,
   Select,
@@ -212,7 +213,9 @@ export default function App() {
         <div className="grid grid--products">
           {components.map((c, i) => (
             <Reveal key={c.name} delay={(i % 4) * 0.06}>
-              <div
+              <TiltCard
+                max={9}
+                glare
                 className={`g-comp ${active?.item.name === c.name ? 'g-comp--active' : ''}`.trim()}
                 role="button"
                 tabIndex={0}
@@ -222,7 +225,7 @@ export default function App() {
               >
                 <code className="g-comp__name">{c.name}</code>
                 <p className="g-comp__desc">{c.desc}</p>
-              </div>
+              </TiltCard>
             </Reveal>
           ))}
         </div>
