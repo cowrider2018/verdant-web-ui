@@ -5,3 +5,12 @@ dist-ssr
 .DS_Store
 .vite
 npm-debug.log*
+
+# claude / anthropic
+CLAUDE.md
+.claude/
+.claude.json
+.mcp.json
+CLAUDE.local.md
+**/CLAUDE.md
+**/.claude/
