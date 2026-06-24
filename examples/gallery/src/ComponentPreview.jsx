@@ -92,7 +92,7 @@ const previews = {
   ),
   Marquee: () => (
     <div className="cp-marquee">
-      <Marquee speed={32} gap="2.5rem">
+      <Marquee speed={32} gap="2.5rem" pauseOnHover={false}>
         {['品牌識別', '視覺系統', 'Art Direction', '網站設計', '插畫', 'Motion'].map((k) => (
           <span key={k} className="cp-marquee__item">
             {k}
