@@ -207,6 +207,29 @@ export default function ComponentPreviewPopup({ item, origin, onClose }) {
     }
   }, [place, onClose])
 
+  // 滑鼠同時離開介紹卡片（.g-comp--active）與預覽浮窗兩者時關閉。
+  // 兩者間有 GAP 空隙，故用短延遲容忍跨越；中途回到任一者即取消關閉。
+  useEffect(() => {
+    // 介紹卡片、浮窗、以及浮窗內元件的 portal 面板（DateField、Select）都算「停留區」
+    const STAY = '.g-comp--active, .g-comp-pop, .select__pop, .datefield__pop'
+    let timer = null
+    const cancel = () => {
+      if (timer) {
+        clearTimeout(timer)
+        timer = null
+      }
+    }
+    const onOver = (e) => {
+      if (e.target.closest(STAY)) cancel()
+      else if (!timer) timer = setTimeout(onClose, 180)
+    }
+    document.addEventListener('mouseover', onOver)
+    return () => {
+      cancel()
+      document.removeEventListener('mouseover', onOver)
+    }
+  }, [onClose])
+
   const Preview = previews[item.name]
 
   return createPortal(
