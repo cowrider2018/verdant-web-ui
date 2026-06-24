@@ -6,6 +6,7 @@ import {
   Reveal,
   SectionDivider,
   Parallax,
+  SunFlare,
   LeafMark,
   Field,
   DateField,
@@ -114,6 +115,7 @@ export default function App() {
           <MediaPlaceholder type="image" width={1920} height={1080} label="展示廊主視覺" bare />
         </Parallax>
         <div className="g-hero__scrim" />
+        <SunFlare />
         <div className="container g-hero__content">
           <motion.span
             className="eyebrow"
